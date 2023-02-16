@@ -40,6 +40,12 @@
     dest: /usr/share/nginx/html
     remote_src: yes
 
+- name: Copy file 
+  ansible.builtin.copy:
+    src: /usr/share/nginx/html/frontend-main/static/
+    dest: /usr/share/nginx/html
+    remote_src: yes    
+
 # echo "Let's download the HTDOCS content and deploy under the Nginx path."
 # rm -rf /tmp/frontend.zip
 # curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>>${LOG_FILE}
