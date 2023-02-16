@@ -23,15 +23,17 @@
     enabled: true    
 
 
-# echo "Install Nginx & starting the service"
-# yum install nginx -y &>>${LOG_FILE}
-# Statuscheck $?
-# systemctl enable nginx &>>${LOG_FILE}
-# Statuscheck $?
-# systemctl start nginx &>>${LOG_FILE}
-# Statuscheck $?
+- name: Download file and place it a directory
+  ansible.builtin.get_url:
+    url: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+    dest: /tmp/frontend.zip
 
 
+- name: Unarchive a file that is already on the remote machine
+  ansible.builtin.unarchive:
+    src: /tmp/frontend.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
 
 # echo "Let's download the HTDOCS content and deploy under the Nginx path."
 # rm -rf /tmp/frontend.zip
