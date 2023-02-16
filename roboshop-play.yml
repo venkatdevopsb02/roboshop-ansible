@@ -1,0 +1,5 @@
+- name: Frontend node setup 
+  hosts: FRONTEND
+  become: true  
+  roles:
+    - frontend
