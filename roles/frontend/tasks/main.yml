@@ -16,6 +16,12 @@
     name: nginx
     state: present
 
+- name: Enable and start the service
+  ansible.builtin.systemd:
+    name: nginx
+    state: started
+    enabled: true    
+
 
 # echo "Install Nginx & starting the service"
 # yum install nginx -y &>>${LOG_FILE}
