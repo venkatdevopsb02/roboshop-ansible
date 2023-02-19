@@ -35,6 +35,7 @@
     path: 
     - /tmp/mongodb.zip
     - /tmp/mongodb-main
+    - /tmp/mongodb
     state: absent
 
 
