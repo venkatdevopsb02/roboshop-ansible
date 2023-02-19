@@ -36,12 +36,14 @@
       - /tmp/mongodb.zip
       - /tmp/mongodb
     state: absent
+    force: true 
 
 - name: Recursively remove directory
   ansible.builtin.file:
     path: 
       - /tmp/mongodb-main/*
     state: absent    
+    force: true
 
 
 # echo "Download the schema and load it."
