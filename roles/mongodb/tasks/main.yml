@@ -54,6 +54,12 @@
     url: https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
     dest: /tmp/mongodb.zip
 
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: /tmp/mongodb-main
+    state: directory
+  ignore_errors: true     
+
 - name: Unarchive a file that is already on the remote machine
   ansible.builtin.unarchive:
     src: /tmp/mongodb.zip
