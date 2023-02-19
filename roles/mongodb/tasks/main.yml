@@ -40,8 +40,7 @@
 
 - name: Recursively remove directory
   ansible.builtin.file:
-    path: 
-      - /tmp/mongodb-main/*
+    path: /tmp/mongodb-main
     state: absent    
     force: true
 
