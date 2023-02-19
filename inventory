@@ -1,2 +1,4 @@
 [FRONTEND]
 frontend.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy
+[MONGODB]
+mongodb.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy

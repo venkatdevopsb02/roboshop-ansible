@@ -1,5 +1,11 @@
-- name: Frontend node setup 
-  hosts: FRONTEND
+# - name: Frontend node setup 
+#   hosts: FRONTEND
+#   become: true  
+#   roles:
+#     - frontend
+
+- name: Mongodb  setup 
+  hosts: MONGODB
   become: true  
   roles:
-    - frontend
+    - mongodb    
