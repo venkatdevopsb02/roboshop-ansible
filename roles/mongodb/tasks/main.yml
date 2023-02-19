@@ -17,20 +17,17 @@
     daemon_reload: yes    
 
 
-# echo "Download MongoDB repo "
-# curl -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo &>>${LOG_FILE}
-# Statuscheck $?
+- name: Replace loop back address 127.0.0.1 with 0.0.0.0 on MongoDB config 
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
 
 
-# echo " Install Mongo & Start Service"
-# yum install -y mongodb-org &>>${LOG_FILE}
-# Statuscheck $?
-
-# systemctl enable mongod &>>${LOG_FILE}
-# Statuscheck $?
-
-# systemctl start mongod &>>${LOG_FILE}
-# Statuscheck $?
+- name: Restart the MongoDB service
+  ansible.builtin.systemd:
+    name: mongod
+    state: restarted
 
 
 # echo "Update Listen IP address from 127.0.0.1 to 0.0.0.0 in config file"
