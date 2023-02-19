@@ -49,6 +49,16 @@
     state: absent    
     force: true
 
+- name: Download mongodb database file and place it a directory
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
+    dest: /tmp/mongodb.zip
+
+- name: Unarchive a file that is already on the remote machine
+  ansible.builtin.unarchive:
+    src: /tmp/mongodb.zip
+    dest: /tmp/mongodb-main
+    remote_src: yes
 
 # echo "Download the schema and load it."
 # rm -rf /tmp/mongodb.zip
