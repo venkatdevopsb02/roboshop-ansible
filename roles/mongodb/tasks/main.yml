@@ -30,13 +30,18 @@
     state: restarted
 
 
-- name: Recursively remove directory
+- name: Recursively remove file
   ansible.builtin.file:
     path: 
       - /tmp/mongodb.zip
-      - /tmp/mongodb-main
       - /tmp/mongodb
     state: absent
+
+- name: Recursively remove directory
+  ansible.builtin.file:
+    path: 
+      - /tmp/mongodb-main/*
+    state: absent    
 
 
 # echo "Download the schema and load it."
