@@ -70,7 +70,8 @@
   community.mongodb.mongodb_shell:
     file: 
       - "/tmp/mongodb-main/catalogue.js"
-      - "/tmp/mongodb-main/user.js"    
+      - "/tmp/mongodb-main/user.js"
+    remote_src: yes      
 
 # cd mongodb-main
 # mongo < catalogue.js &>>${LOG_FILE}
