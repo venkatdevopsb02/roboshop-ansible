@@ -28,13 +28,14 @@
     remote_src: yes
 
 - name: Download NodeJS repo file and place it a directory
-  ansible.builtin.shell: rm -rf /tmp/{{COMPONENT}} && mv /tmp/{{COMPONENT}}-main /tmp/{{COMPONENT}} && rm -rf /home/roboshop/{{COMPONENT}}
+  ansible.builtin.shell: rm -rf /tmp/{{COMPONENT}} && mv /tmp/{{COMPONENT}}-main /tmp/{{COMPONENT}} && rm -rf /home/roboshop/{{COMPONENT}}/*
   ignore_errors: true 
+
 
 - name: Copy files
   ansible.builtin.copy:
-    src: /tmp/{{COMPONENT}}
-    dest: /home/roboshop/{{COMPONENT}}
+    src: /tmp/{{COMPONENT}}/
+    dest: /home/roboshop/{{COMPONENT}}/
     remote_src: yes
   become_user: roboshop   
 
