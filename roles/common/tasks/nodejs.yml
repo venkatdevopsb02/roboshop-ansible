@@ -5,12 +5,12 @@
 
 - name: Install the  nodejs package
   ansible.builtin.yum:
-    name: "{{COMPONENT}}"
+    name: nodejs
     state: present
 
 - name: Enable and start the service
   ansible.builtin.systemd:
-    name: "{{COMPONENT}}"
+    name: nodejs
     state: started
     enabled: true    
     daemon_reload: yes   
