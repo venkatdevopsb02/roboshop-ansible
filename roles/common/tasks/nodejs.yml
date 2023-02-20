@@ -8,12 +8,12 @@
     name: nodejs
     state: present
 
-- name: Enable and start the service
-  ansible.builtin.systemd:
-    name: nodejs
-    state: started
-    enabled: true    
-    daemon_reload: yes   
+# - name: Enable and start the service
+#   ansible.builtin.systemd:
+#     name: nodejs
+#     state: started
+#     enabled: true    
+#     daemon_reload: yes   
 
 - name: Apply App-prereq.yml 
   ansible.builtin.include_tasks: app-prereq.yml 
