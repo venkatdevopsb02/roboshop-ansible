@@ -71,17 +71,4 @@
 
 
 
-# - name: Run a js file containing MongoDB commands with pseudo-idempotency
-#   community.mongodb.mongodb_shell:
-#     file: 
-#       - "/tmp/mongodb-main/catalogue.js"
-#       - "/tmp/mongodb-main/user.js"
-#     remote_src: yes      
 
-
-
-# cd mongodb-main
-# mongo < catalogue.js &>>${LOG_FILE}
-# Statuscheck $?
-# mongo < users.js &>>${LOG_FILE}
-# Statuscheck $?
