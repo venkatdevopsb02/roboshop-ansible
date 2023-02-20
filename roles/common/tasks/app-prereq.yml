@@ -1,0 +1,73 @@
+
+- name: creating a roboshop user account 
+  user:
+    name: roboshop
+  register: appuser
+  ignore_errors: true 
+
+- name: Download {{COMPONENET}} files
+  ansible.builtin.get_url:
+    url: https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip
+    dest: /tmp/{{COMPONENT}}.zip
+
+- name: Stop the service
+  ansible.builtin.systemd:
+    name: "{{COMPONENT}}"
+    state: stopped     
+
+- name: Recursively remove file
+  ansible.builtin.file:
+    path: /home/roboshop/*
+    state: absent
+    force: true 
+
+- name: Unarchive a file that is already on the remote machine
+  ansible.builtin.unarchive:
+    src: /tmp/{{COMPONENT}}
+    dest: /tmp/
+    remote_src: yes
+
+- name: Download NodeJS repo file and place it a directory
+  ansible.builtin.shell: mv /tmp/{{COMPONENT}}-main /tmp/{{COMPONENT}}
+
+
+- name: Copy files
+  ansible.builtin.copy:
+    src: /tmp/{{COMPONENT}}
+    dest: /home/roboshop/{{COMPONENT}}
+    remote_src: yes
+  become_user: "{{appuser}}"    
+
+
+
+
+APP_PREREQ() {
+
+    echo " validate whether roboshop user is alreday exists or not"
+    id roboshop &>>${LOG_FILE}
+
+    if [ $? -ne 0 ]; then 
+    echo " adding user robohop to the VM "
+    useradd roboshop &>>${LOG_FILE}
+    Statuscheck $?
+    fi 
+
+    echo "Download ${COMPONENT} Application code"
+    curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/roboshop-devops-project/${COMPONENT}/archive/main.zip" &>>${LOG_FILE}
+    Statuscheck $?
+
+    echo "stoping the service before cleanup"
+    systemctl stop ${COMPONENT}.service
+
+    echo " remove old content if exists - make the script compatable to re-run"
+    cd /home/roboshop && rm -rf ${COMPONENT}  &>>${LOG_FILE}
+    Statuscheck $?
+
+    echo "extract the application "
+    unzip /tmp/${COMPONENT}.zip &>>${LOG_FILE}
+    Statuscheck $?
+
+
+    mv ${COMPONENT}-main ${COMPONENT}
+
+}

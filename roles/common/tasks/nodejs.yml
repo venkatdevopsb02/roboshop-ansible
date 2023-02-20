@@ -1,0 +1,64 @@
+- name: Download NodeJS repo file and place it a directory
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+
+
+- name: Install the  nodejs package
+  ansible.builtin.yum:
+    name: nodejs
+    state: present
+
+- name: Enable and start the service
+  ansible.builtin.systemd:
+    name: mongod
+    state: started
+    enabled: true    
+    daemon_reload: yes   
+
+- name: Apply App-prereq.yml 
+  ansible.builtin.include_tasks: app-prereq.yml 
+
+- name: Install packages based on package.json.
+  npm:
+    path: /home/roboshop/{{COMPONENT}}
+  become_user: "{{appuser}}"
+
+- name: Apply systemd.yml 
+  ansible.builtin.include_tasks: systemd.yml 
+
+
+# ID=$(id -u)
+
+# if [ $ID -ne 0 ]; then 
+#     echo "you are not running as root and this will fail"
+#     exit 1
+# fi     
+
+
+
+
+# # NODEJS() {
+# #     echo " Setup NodeJS on the VM"
+# #     curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG_FILE}
+# #     Statuscheck $?
+    
+# #     echo "Install Nodejs "
+# #     yum install nodejs -y &>>${LOG_FILE}
+# #     Statuscheck $?
+
+#     # APP_PREREQ
+    
+#     echo "Install NodeJs dependencies"
+#     cd /home/roboshop
+#     cd  ${COMPONENT}
+#     npm install &>>${LOG_FILE}
+#     Statuscheck $?
+
+#     SYSTEMD_SETUP
+
+
+# }
+
+
+
+
