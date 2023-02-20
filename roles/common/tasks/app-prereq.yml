@@ -36,7 +36,7 @@
     src: /tmp/{{COMPONENT}}
     dest: /home/roboshop/{{COMPONENT}}
     remote_src: yes
-  become_user: "{{appuser}}"    
+  become_user: roboshop   
 
 
 
