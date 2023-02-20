@@ -21,7 +21,7 @@
 - name: Install packages based on package.json.
   npm:
     path: /home/roboshop/{{COMPONENT}}
-  become_user: "{{appuser}}"
+  become_user: roboshop
 
 - name: Apply systemd.yml 
   ansible.builtin.include_tasks: systemd.yml 
