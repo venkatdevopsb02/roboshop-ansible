@@ -4,3 +4,7 @@ frontend.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansibl
 mongodb.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy
 [CATALOGUE]
 catalogue.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy
+[CART]
+cart.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy
+[USER]
+user.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy
