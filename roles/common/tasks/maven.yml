@@ -1,18 +1,38 @@
-MAVEN() {
 
-    echo "Install maven"
-    yum install maven -y &>>${LOG_FILE}
-    Statuscheck $?
+- name: Install the  maven package
+  ansible.builtin.yum:
+    name: maven
+    state: present
 
-    APP_PREREQ
 
-    echo " Installing the dependencies "
-    cd /home/roboshop
-    cd ${COMPONENT}
-    mvn clean package  &>>${LOG_FILE}
-    mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar  &>>${LOG_FILE}
-    Statuscheck $?
 
-    SYSTEMD_SETUP
+- name: Apply App-prereq.yml 
+  ansible.builtin.include_tasks: app-prereq.yml 
 
-}
+- name: Setup maven and install dependencies 
+  ansible.builtin.shell: mvn clean package &&  mv target/{{COMPONENT}}-1.0.jar {{COMPONENT}}.jar
+  args:
+    chdir: /home/roboshop/{{COMPONENT}} 
+  become_user: roboshop  
+
+- name: Apply systemd.yml 
+  ansible.builtin.include_tasks: systemd.yml     
+
+# MAVEN() {
+
+#     echo "Install maven"
+#     yum install maven -y &>>${LOG_FILE}
+#     Statuscheck $?
+
+#     APP_PREREQ
+
+#     echo " Installing the dependencies "
+#     cd /home/roboshop
+#     cd ${COMPONENT}
+#     mvn clean package  &>>${LOG_FILE}
+#     mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar  &>>${LOG_FILE}
+#     Statuscheck $?
+
+#     SYSTEMD_SETUP
+
+# }
