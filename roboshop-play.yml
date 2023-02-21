@@ -31,21 +31,21 @@
 #     - cart          
 
 
-- name: USER  setup 
-  hosts: USER
+- name: SHIPPING setup 
+  hosts: SHIPPING
   become: true  
   roles:
-    - user  
+    - maven  
 
 
-- name: CART setup 
-  hosts: CART
+- name: PAYMENT setup 
+  hosts: PAYMENT
   become: true  
   roles:
-    - cart    
+    - python    
 
-- name: USER  setup 
-  hosts: USER
+- name: DISPATCH setup 
+  hosts: DISPATCH
   become: true  
   roles:
-    - user         
+    - golang         
