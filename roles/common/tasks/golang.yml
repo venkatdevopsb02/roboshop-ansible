@@ -1,24 +1,44 @@
 
-GOLANG() {
 
-    echo " Installing golang "
-    yum install golang -y &>>${LOG_FILE}
-    Statuscheck $?
+- name: Install the  Golang package
+  ansible.builtin.yum:
+    name: golang
+    state: present
 
-    APP_PREREQ
+- name: Apply App-prereq.yml 
+  ansible.builtin.include_tasks: app-prereq.yml 
 
-    echo " Installing the dependencies "
-    cd /home/roboshop
-    cd ${COMPONENT}
-    #cd /home/${COMPONENT}/
-    go mod init dispatch &>>${LOG_FILE}
-    Statuscheck $?
+- name: Setup golang and install dependencies 
+  ansible.builtin.shell: go mod init dispatch &&  go get && go build
+  args:
+    chdir: /home/roboshop/{{COMPONENT}} 
+  become_user: roboshop  
 
-    echo "Doing the golang build"
-    go get 
-    go build &>>${LOG_FILE}
-    Statuscheck $?
+- name: Apply systemd.yml 
+  ansible.builtin.include_tasks: systemd.yml   
 
-    SYSTEMD_SETUP
 
-}
+
+# GOLANG() {
+
+#     echo " Installing golang "
+#     yum install golang -y &>>${LOG_FILE}
+#     Statuscheck $?
+
+#     APP_PREREQ
+
+#     echo " Installing the dependencies "
+#     cd /home/roboshop
+#     cd ${COMPONENT}
+#     #cd /home/${COMPONENT}/
+#     go mod init dispatch &>>${LOG_FILE}
+#     Statuscheck $?
+
+#     echo "Doing the golang build"
+#     go get 
+#     go build &>>${LOG_FILE}
+#     Statuscheck $?
+
+#     SYSTEMD_SETUP
+
+# }
