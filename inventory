@@ -14,3 +14,9 @@ dispatch.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansibl
 payment.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy
 [SHIPPING]
 shipping.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy
+
+
+[REDIS]
+redis.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy
+[RABBITMQ]
+rabbitmq.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy

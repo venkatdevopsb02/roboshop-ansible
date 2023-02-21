@@ -31,21 +31,34 @@
 #     - cart          
 
 
-- name: SHIPPING setup 
-  hosts: SHIPPING
-  become: true  
-  roles:
-    - shipping  
+# - name: SHIPPING setup 
+#   hosts: SHIPPING
+#   become: true  
+#   roles:
+#     - shipping  
 
 
-- name: PAYMENT setup 
-  hosts: PAYMENT
-  become: true  
-  roles:
-    - payment    
+# - name: PAYMENT setup 
+#   hosts: PAYMENT
+#   become: true  
+#   roles:
+#     - payment    
 
-- name: DISPATCH setup 
-  hosts: DISPATCH
+# - name: DISPATCH setup 
+#   hosts: DISPATCH
+#   become: true  
+#   roles:
+#     - dispatch         
+
+
+- name: REDIS setup 
+  hosts: REDIS
   become: true  
   roles:
-    - dispatch         
+    - redis    
+
+- name: RABBITMQ setup 
+  hosts: RABBITMQ
+  become: true  
+  roles:
+    - rabbitmq            

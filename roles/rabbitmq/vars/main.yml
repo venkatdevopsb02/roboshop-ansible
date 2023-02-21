@@ -1,0 +1,3 @@
+COMPONENET: rabbitmq
+RABBITMQ_USER: roboshop 
+RABBITMQ_PASSWORD: dummy 

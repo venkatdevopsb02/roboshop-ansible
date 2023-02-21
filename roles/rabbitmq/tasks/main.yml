@@ -3,29 +3,37 @@
 
 
 
+- name: Download Rabbitmq repo on CentOS-8
+  ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
 
-echo "Down the repo for Rabbitmq"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | sudo bash
-yum install erlang -y
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash &>>$LOG_FILE
-Statuscheck $?
-
+- name: Download erlang repo
+  ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
 
 
-echo "Stop Rabbitmq service"
-systemctl stop rabbitmq-server 
-#&>>$LOG_FILE
-#Statuscheck $?
+- name: Install the  rabbitmq-server package
+  ansible.builtin.yum:
+    name: rabbitmq-server 
+    state: present
 
-echo "Install the Rabbitmq"
-yum install rabbitmq-server -y --skip-broken &>>$LOG_FILE
-Statuscheck $?
+- name: Enable and start the service
+  ansible.builtin.systemd:
+    name: rabbitmq-server
+    state: started
+    enabled: true    
+    daemon_reload: yes  
 
-echo "Enable and start the Rabbitmq service"
-systemctl enable rabbitmq-server &>>$LOG_FILE
-Statuscheck $?
-systemctl start rabbitmq-server &>>$LOG_FILE
-Statuscheck $?
+
+- name: Adding user to rabbitmq and setting the permissions
+  community.rabbitmq.rabbitmq_user:
+    user: "{{RABBITMQ_USER}}"
+    password: "{{RABBITMQ_PASSWORD}}"
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+    tags: administrator
+
 
 rabbitmqctl list_users | grep -i roboshop &>>$LOG_FILE
 if [ $? ne 0 ]; then 
