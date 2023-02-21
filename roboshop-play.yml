@@ -17,6 +17,20 @@
 #     - catalogue        
 
 
+# - name: USER  setup 
+#   hosts: USER
+#   become: true  
+#   roles:
+#     - user  
+
+
+# - name: CART setup 
+#   hosts: CART
+#   become: true  
+#   roles:
+#     - cart          
+
+
 - name: USER  setup 
   hosts: USER
   become: true  
@@ -28,4 +42,10 @@
   hosts: CART
   become: true  
   roles:
-    - cart          
+    - cart    
+
+- name: USER  setup 
+  hosts: USER
+  become: true  
+  roles:
+    - user         
