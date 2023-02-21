@@ -10,8 +10,22 @@
 #   roles:
 #     - mongodb    
 
-- name: Catalogue  setup 
-  hosts: CATALOGUE
+# - name: Catalogue  setup 
+#   hosts: CATALOGUE
+#   become: true  
+#   roles:
+#     - catalogue        
+
+
+- name: USER  setup 
+  hosts: USER
   become: true  
   roles:
-    - catalogue        
+    - user  
+
+
+- name: CART setup 
+  hosts: CART
+  become: true  
+  roles:
+    - cart          
