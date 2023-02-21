@@ -8,3 +8,9 @@ catalogue.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansib
 cart.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy
 [USER]
 user.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy
+[DISPATCH]
+dispatch.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy
+[PAYMENT]
+payment.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy
+[SHIPPING]
+shipping.roboshop.internal ansible_ssh_user=centos ansible_ssh_pass=dummy ansible_sudo_pass=dummy

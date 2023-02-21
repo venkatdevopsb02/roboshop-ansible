@@ -35,17 +35,17 @@
   hosts: SHIPPING
   become: true  
   roles:
-    - maven  
+    - shipping  
 
 
 - name: PAYMENT setup 
   hosts: PAYMENT
   become: true  
   roles:
-    - python    
+    - payment    
 
 - name: DISPATCH setup 
   hosts: DISPATCH
   become: true  
   roles:
-    - golang         
+    - dispatch         
