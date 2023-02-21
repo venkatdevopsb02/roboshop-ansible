@@ -4,6 +4,7 @@
 
 - name: Install Redis repo on CentOS-8
   ansible.builtin.shell: dnf install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y --skip-broken
+  ignore_errors: true  
 
 - name: Install Redis module
   ansible.builtin.shell: dnf module enable redis:remi-6.2 -y
