@@ -51,14 +51,20 @@
 #     - dispatch         
 
 
-- name: REDIS setup 
-  hosts: REDIS
-  become: true  
-  roles:
-    - redis    
+# - name: REDIS setup 
+#   hosts: REDIS
+#   become: true  
+#   roles:
+#     - redis    
 
-- name: RABBITMQ setup 
-  hosts: RABBITMQ
+# - name: RABBITMQ setup 
+#   hosts: RABBITMQ
+#   become: true  
+#   roles:
+#     - rabbitmq           
+
+- name: MYSQL setup 
+  hosts: MYSQL
   become: true  
   roles:
-    - rabbitmq            
+    - mysql         
