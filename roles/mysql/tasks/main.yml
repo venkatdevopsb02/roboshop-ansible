@@ -31,9 +31,13 @@
   ansible.builtin.debug:
    msg: "{{out.stdout}}"  
 
+- name: Copy file 
+  ansible.builtin.copy:
+    src: set-root-passwd.sql
+    dest: /tmp/
 
 - name: validate wheather we were able to connect uisng the default password 
-  ansible.builtin.shell: echo "show databases;" | mysql --connect-expired-password -uroot -p{{out.stdout}}
+  ansible.builtin.shell: mysql --connect-expired-password -uroot -p{{out.stdout}} < /tmp/set-root-passwd.sql 
   ignore_errors: true
   register: mysql_conn_status
 
