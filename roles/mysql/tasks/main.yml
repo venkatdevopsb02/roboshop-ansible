@@ -37,6 +37,10 @@
   ignore_errors: true
   register: mysql_conn_status
 
+- name: validate wheather we were able to connect uisng the set password 
+  ansible.builtin.shell: echo "show databases;" | mysql --connect-expired-password -uroot -p{{ROBOSHOP_MYSQL_PASSWORD}}
+  ignore_errors: true
+  when: mysql_conn_status is failed
 
 
 
