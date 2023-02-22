@@ -1,40 +1,28 @@
 
 
-COMPONENT=mysql 
-LOG_FILE=/tmp/${COMPONENT}
-source ./common.sh 
-
-# echo $1
-# sleep 15 
-# echo $#
-# sleep 15 
-
-if [ $# -eq 0 ]
-then 
-    echo " you need to pass the password of mysql to the script"
-    echo " exiting the script"
-    exit 1
-fi 
+- name: Install mysql repo on CentOS-8
+  ansible.builtin.shell: curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo
+  ignore_errors: true  
 
 
-
-source ./common.sh 
-
-echo "setup the repo for mysql"
-curl -s -L -o /etc/yum.repos.d/mysql.repo https://raw.githubusercontent.com/roboshop-devops-project/mysql/main/mysql.repo  &>>$LOG_FILE
-Statuscheck $?
-dnf module disable mysql
-
-echo "Install MySQL "
-yum install mysql-community-server -y  &>>$LOG_FILE
-Statuscheck $?
+- name: disable mysql module
+  ansible.builtin.shell: dnf module disable mysql
+  ignore_errors: true
 
 
-echo " Enable & Start MySQL"
-systemctl enable mysqld   &>>$LOG_FILE
-Statuscheck $?
-systemctl start mysqld  &>>$LOG_FILE
-Statuscheck $?
+- name: Install the  redis package
+  ansible.builtin.yum:
+    name: mysql-community-server
+    state: present
+
+
+- name: Enable and start the service
+  ansible.builtin.systemd:
+    name: mysqld
+    state: started
+    enabled: true    
+    daemon_reload: yes 
+
 
 
 DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | cut -d " " -f 11)
