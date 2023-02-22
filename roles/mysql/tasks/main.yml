@@ -54,6 +54,7 @@
       - "/tmp/mysql.zip"
       - "/tmp/mysql-main"
     state: absent
+  ignore_errors: yes   
 
 
 # echo " cleanup before installation"
