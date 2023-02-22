@@ -1,67 +1,67 @@
-# - name: Frontend node setup 
-#   hosts: FRONTEND
-#   become: true  
-#   roles:
-#     - frontend
+- name: Frontend node setup 
+  hosts: FRONTEND
+  become: true  
+  roles:
+    - frontend
 
-# - name: Mongodb  setup 
-#   hosts: MONGODB
-#   become: true  
-#   roles:
-#     - mongodb    
+- name: Mongodb  setup 
+  hosts: MONGODB
+  become: true  
+  roles:
+    - mongodb    
 
-# - name: Catalogue  setup 
-#   hosts: CATALOGUE
-#   become: true  
-#   roles:
-#     - catalogue        
-
-
-# - name: USER  setup 
-#   hosts: USER
-#   become: true  
-#   roles:
-#     - user  
+- name: Catalogue  setup 
+  hosts: CATALOGUE
+  become: true  
+  roles:
+    - catalogue        
 
 
-# - name: CART setup 
-#   hosts: CART
-#   become: true  
-#   roles:
-#     - cart          
+- name: USER  setup 
+  hosts: USER
+  become: true  
+  roles:
+    - user  
 
 
-# - name: SHIPPING setup 
-#   hosts: SHIPPING
-#   become: true  
-#   roles:
-#     - shipping  
+- name: CART setup 
+  hosts: CART
+  become: true  
+  roles:
+    - cart          
 
 
-# - name: PAYMENT setup 
-#   hosts: PAYMENT
-#   become: true  
-#   roles:
-#     - payment    
-
-# - name: DISPATCH setup 
-#   hosts: DISPATCH
-#   become: true  
-#   roles:
-#     - dispatch         
+- name: SHIPPING setup 
+  hosts: SHIPPING
+  become: true  
+  roles:
+    - shipping  
 
 
-# - name: REDIS setup 
-#   hosts: REDIS
-#   become: true  
-#   roles:
-#     - redis    
+- name: PAYMENT setup 
+  hosts: PAYMENT
+  become: true  
+  roles:
+    - payment    
 
-# - name: RABBITMQ setup 
-#   hosts: RABBITMQ
-#   become: true  
-#   roles:
-#     - rabbitmq           
+- name: DISPATCH setup 
+  hosts: DISPATCH
+  become: true  
+  roles:
+    - dispatch         
+
+
+- name: REDIS setup 
+  hosts: REDIS
+  become: true  
+  roles:
+    - redis    
+
+- name: RABBITMQ setup 
+  hosts: RABBITMQ
+  become: true  
+  roles:
+    - rabbitmq           
 
 - name: MYSQL setup 
   hosts: MYSQL
