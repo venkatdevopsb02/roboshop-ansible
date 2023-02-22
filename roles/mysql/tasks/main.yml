@@ -31,11 +31,13 @@
   ansible.builtin.debug:
    msg: "{{out.stdout}}"  
 
-# DEFAULT_PASSWORD=$(grep 'A temporary password' /var/log/mysqld.log | cut -d " " -f 11)
+
+- name: validate wheather we were able to connect uisng the default password 
+  ansible.builtin.shell: echo "show databases;" | mysql --connect-expired-password -uroot -p{{out.stdout}}
+  ignore_errors: true
+  register: mysql_conn_status
 
 
-#  echo " ALTER USER 'root'@'localhost' IDENTIFIED BY '$1';
-# FLUSH PRIVILEGES; " > /tmp/set-root-passwd.sql
 
 
 # echo "show databases;" | mysql --connect-expired-password -uroot -p${DEFAULT_PASSWORD}
