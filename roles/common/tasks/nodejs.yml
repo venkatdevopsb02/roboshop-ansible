@@ -26,6 +26,8 @@
 - name: Apply systemd.yml 
   ansible.builtin.include_tasks: systemd.yml 
 
+- name: Apply promethus node-exporter 
+  ansible.builtin.include_tasks: promethus-node.yml 
 
 # ID=$(id -u)
 
