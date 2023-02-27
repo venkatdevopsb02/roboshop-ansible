@@ -70,5 +70,9 @@
   ansible.builtin.shell: mongo < /tmp/mongodb-main/catalogue.js &&  mongo < /tmp/mongodb-main/users.js
 
 
+- name: Import common role and run promethus-node task 
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: promethus-node
 
 

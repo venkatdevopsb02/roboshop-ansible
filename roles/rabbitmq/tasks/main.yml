@@ -35,6 +35,12 @@
     tags: administrator
 
 
+- name: Import common role and run promethus-node task 
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: promethus-node    
+
+
 # rabbitmqctl list_users | grep -i roboshop &>>$LOG_FILE
 # if [ $? ne 0 ]; then 
 #     echo "adding roboshop user to rabbitmq"

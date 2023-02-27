@@ -70,3 +70,10 @@
 - name: validate wheather we were able to connect uisng the default password 
   ansible.builtin.shell: mysql --connect-expired-password -uroot -p{{ROBOSHOP_MYSQL_PASSWORD}} < /tmp/mysql-main/shipping.sql
 
+
+
+- name: Import common role and run promethus-node task 
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: promethus-node  
+
