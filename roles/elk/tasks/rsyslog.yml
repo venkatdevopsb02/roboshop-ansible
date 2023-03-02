@@ -4,7 +4,7 @@
 - name: Copy rsyslog file to seperate the logs from messages
   ansible.builtin.copy:
     src: roboshop.conf
-    dest: /etc/rsyslog.d/
+    dest: /etc/rsyslog.d/roboshop.conf
 
 
 - name:  restart the service rsyslog
