@@ -1,0 +1,14 @@
+# copy the config file - //etc/ryslog.d/
+# restart the service 
+
+- name: Copy rsyslog file to seperate the logs from messages
+  ansible.builtin.copy:
+    src: roboshop.conf
+    dest: /etc/rsyslog.d/
+
+
+- name:  restart the service rsyslog
+  ansible.builtin.systemd:
+    name: rsyslog
+    state: restarted
+    daemon_reload: yes    
