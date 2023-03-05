@@ -9,13 +9,13 @@ filebeat.inputs:
   fields:
     env: {{ENV}}
     component: {{COMPONENT}}
-{% if  COMPONENT == "SHIPPING" %}
+{% if  COMPONENT == "shipping" %}
   multiline.type: pattern
   multiline.pattern: '^2'
   multiline.negate: true
   multiline.match: after
 {% endif %}
-{% if  COMPONENT == "PAYMENT" %}
+{% if  COMPONENT == "payment" %}
   include_lines: ['^\[2']
 {% endif %}
 
