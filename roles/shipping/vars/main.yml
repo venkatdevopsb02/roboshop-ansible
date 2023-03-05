@@ -1,1 +1,4 @@
 COMPONENT: shipping
+LOG_TYPE: raw
+LOG_FILE: /var/log/shipping.log
+ENV: lab
