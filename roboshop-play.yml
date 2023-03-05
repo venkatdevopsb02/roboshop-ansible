@@ -1,70 +1,76 @@
-- name: Frontend node setup 
-  hosts: FRONTEND
+# - name: Frontend node setup 
+#   hosts: FRONTEND
+#   become: true  
+#   roles:
+#     - frontend
+
+# - name: Mongodb  setup 
+#   hosts: MONGODB
+#   become: true  
+#   roles:
+#     - mongodb    
+
+# - name: Catalogue  setup 
+#   hosts: CATALOGUE
+#   become: true  
+#   roles:
+#     - catalogue        
+
+
+# - name: USER  setup 
+#   hosts: USER
+#   become: true  
+#   roles:
+#     - user  
+
+
+# - name: CART setup 
+#   hosts: CART
+#   become: true  
+#   roles:
+#     - cart          
+
+
+# - name: SHIPPING setup 
+#   hosts: SHIPPING
+#   become: true  
+#   roles:
+#     - shipping  
+
+
+# - name: PAYMENT setup 
+#   hosts: PAYMENT
+#   become: true  
+#   roles:
+#     - payment    
+
+# - name: DISPATCH setup 
+#   hosts: DISPATCH
+#   become: true  
+#   roles:
+#     - dispatch         
+
+
+# - name: REDIS setup 
+#   hosts: REDIS
+#   become: true  
+#   roles:
+#     - redis    
+
+# - name: RABBITMQ setup 
+#   hosts: RABBITMQ
+#   become: true  
+#   roles:
+#     - rabbitmq           
+
+# - name: MYSQL setup 
+#   hosts: MYSQL
+#   become: true  
+#   roles:
+#     - mysql         
+
+- name: LOGSTASH setup 
+  hosts: LOGSTASH
   become: true  
   roles:
-    - frontend
-
-- name: Mongodb  setup 
-  hosts: MONGODB
-  become: true  
-  roles:
-    - mongodb    
-
-- name: Catalogue  setup 
-  hosts: CATALOGUE
-  become: true  
-  roles:
-    - catalogue        
-
-
-- name: USER  setup 
-  hosts: USER
-  become: true  
-  roles:
-    - user  
-
-
-- name: CART setup 
-  hosts: CART
-  become: true  
-  roles:
-    - cart          
-
-
-- name: SHIPPING setup 
-  hosts: SHIPPING
-  become: true  
-  roles:
-    - shipping  
-
-
-- name: PAYMENT setup 
-  hosts: PAYMENT
-  become: true  
-  roles:
-    - payment    
-
-- name: DISPATCH setup 
-  hosts: DISPATCH
-  become: true  
-  roles:
-    - dispatch         
-
-
-- name: REDIS setup 
-  hosts: REDIS
-  become: true  
-  roles:
-    - redis    
-
-- name: RABBITMQ setup 
-  hosts: RABBITMQ
-  become: true  
-  roles:
-    - rabbitmq           
-
-- name: MYSQL setup 
-  hosts: MYSQL
-  become: true  
-  roles:
-    - mysql         
+    - elk      
