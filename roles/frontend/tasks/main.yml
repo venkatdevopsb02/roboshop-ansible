@@ -63,3 +63,9 @@
   ansible.builtin.include_role:
     name: common
     tasks_from: promethus-node
+
+
+- name: Import filebeat  role
+  ansible.builtin.include_role:
+    name: elk
+    tasks_from: filebeat      
